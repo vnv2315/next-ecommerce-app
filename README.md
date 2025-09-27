@@ -2,7 +2,7 @@
 
 A modern, full-stack e-commerce website built with Next.js, featuring seamless user authentication, admin panel, and efficient background job processing.
 
-**Live Demo**: [click here](next-ecommerce-app-taupe.vercel.app)
+**Live Demo**: [click here](https://next-ecommerce-app-taupe.vercel.app/)
 
 
 ## 🚀 Features
