@@ -15,15 +15,30 @@ export const syncUserCreation=inngest.createFunction(
         event:'clerk/user.created'
     },
     async({event})=>{
-        const {id,first_name,image_url,last_name,email_addresses}=event.data
-        const userData={
-            _id:id,
-            email:email_addresses[0].email_address,
-            name:first_name+" "+last_name,
-            imageUrl:image_url
+        try {
+            console.log('Processing user creation event:', event);
+            const {id,first_name,image_url,last_name,email_addresses}=event.data
+            
+            if (!id || !email_addresses || !email_addresses[0]) {
+                throw new Error('Missing required user data');
+            }
+            
+            const userData={
+                _id:id,
+                email:email_addresses[0].email_address,
+                name:first_name+" "+last_name,
+                imageUrl:image_url
+            }
+            
+            console.log('Connecting to database...');
+            await connectDB();
+            console.log('Creating user:', userData);
+            await User.create(userData);
+            console.log('User created successfully');
+        } catch (error) {
+            console.error('Error in syncUserCreation:', error);
+            throw error;
         }
-        await connectDB();
-        await User.create(userData);
     }
 )
 // for user updation
@@ -35,15 +50,30 @@ export const syncUserUpdation=inngest.createFunction(
         event:'clerk/user.updated'
     },
     async({event})=>{
-        const {id,first_name,image_url,last_name,email_addresses}=event.data
-        const userData={
-            _id:id,
-            email:email_addresses[0].email_address,
-            name:first_name+" "+last_name,
-            imageUrl:image_url
+        try {
+            console.log('Processing user update event:', event);
+            const {id,first_name,image_url,last_name,email_addresses}=event.data
+            
+            if (!id || !email_addresses || !email_addresses[0]) {
+                throw new Error('Missing required user data');
+            }
+            
+            const userData={
+                _id:id,
+                email:email_addresses[0].email_address,
+                name:first_name+" "+last_name,
+                imageUrl:image_url
+            }
+            
+            console.log('Connecting to database...');
+            await connectDB();
+            console.log('Updating user:', userData);
+            await User.findByIdAndUpdate(id,userData);
+            console.log('User updated successfully');
+        } catch (error) {
+            console.error('Error in syncUserUpdation:', error);
+            throw error;
         }
-        await connectDB();
-        await User.findByIdAndUpdate(id,userData);
     }
 )
 
@@ -56,8 +86,22 @@ export const syncUserDeletion=inngest.createFunction(
         event:'clerk/user.deleted'
     },
     async({event})=>{
-        const {id}=event.data
-        await connectDB();
-        await User.findByIdAndDelete(id);
+        try {
+            console.log('Processing user deletion event:', event);
+            const {id}=event.data
+            
+            if (!id) {
+                throw new Error('Missing user ID for deletion');
+            }
+            
+            console.log('Connecting to database...');
+            await connectDB();
+            console.log('Deleting user with ID:', id);
+            await User.findByIdAndDelete(id);
+            console.log('User deleted successfully');
+        } catch (error) {
+            console.error('Error in syncUserDeletion:', error);
+            throw error;
+        }
     }
 )

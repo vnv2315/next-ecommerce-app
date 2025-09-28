@@ -1,7 +1,7 @@
 import { serve } from "inngest/next";
 import { inngest, syncUserCreation, syncUserDeletion, syncUserUpdation } from "@/config/inngest";
 
-// Create an API that serves zero functions
+// Create an API that serves Inngest functions
 export const { GET, POST, PUT } = serve({
   client: inngest,
   functions: [
@@ -9,4 +9,6 @@ export const { GET, POST, PUT } = serve({
     syncUserUpdation,
     syncUserDeletion
   ],
+  // Add streaming for better performance
+  streaming: true,
 });
