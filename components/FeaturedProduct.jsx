@@ -1,6 +1,7 @@
 import React from "react";
 import { assets } from "@/assets/assets";
 import Image from "next/image";
+import Link from "next/link";
 
 const products = [
   {
@@ -75,14 +76,14 @@ const FeaturedProduct = () => {
                 </p>
                 
                 {/* CTA Button */}
-                <button className={`group/btn inline-flex items-center gap-2 bg-gradient-to-r ${color} px-6 py-3 rounded-full font-semibold text-sm lg:text-base shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300`}>
+                <Link href='/all-products' className={`group/btn inline-flex items-center gap-2 bg-gradient-to-r ${color} px-6 py-3 rounded-full font-semibold text-sm lg:text-base shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300`}>
                   <span>Shop Now</span>
                   <Image 
                     className="h-4 w-4 group-hover/btn:translate-x-1 transition-transform duration-300" 
                     src={assets.redirect_icon} 
                     alt="Shop Now" 
                   />
-                </button>
+                </Link>
               </div>
             </div>
 
@@ -90,22 +91,6 @@ const FeaturedProduct = () => {
             <div className={`absolute top-4 right-4 w-16 h-16 bg-gradient-to-br ${color} rounded-full opacity-20 group-hover:opacity-40 group-hover:scale-125 transition-all duration-500`}></div>
           </div>
         ))}
-      </div>
-
-      {/* Bottom CTA Section */}
-      <div className="text-center mt-16 p-8 bg-gradient-to-r from-gray-50 to-gray-100 rounded-2xl">
-        <h3 className="text-2xl font-bold text-gray-800 mb-4">
-          Ready to upgrade your tech game?
-        </h3>
-        <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
-          Browse our complete collection of premium electronics and find the perfect match for your needs
-        </p>
-        <button className="inline-flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-orange-500 to-red-500 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
-          View All Products
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
-          </svg>
-        </button>
       </div>
     </div>
   );

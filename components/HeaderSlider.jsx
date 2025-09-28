@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { assets } from "@/assets/assets";
 import Image from "next/image";
+import Link from "next/link";
 import { ChevronLeft, ChevronRight, Play, Pause } from "lucide-react";
 
 const HeaderSlider = () => {
@@ -114,23 +115,23 @@ const HeaderSlider = () => {
                   
                   {/* CTA Buttons */}
                   <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                    <button className={`group px-8 py-4 bg-gradient-to-r ${slide.gradient} text-white font-semibold rounded-full shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300 text-lg`}>
+                    <Link href='/all-products' className={`group px-8 py-4 bg-gradient-to-r ${slide.gradient} text-white font-semibold rounded-full shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300 text-lg`}>
                       <span className="flex items-center gap-2">
                         {slide.buttonText1}
                         <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="currentColor" viewBox="0 0 20 20">
                           <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
                         </svg>
                       </span>
-                    </button>
+                    </Link>
                     
-                    <button className="group flex items-center justify-center gap-2 px-8 py-4 bg-white/80 backdrop-blur-sm hover:bg-white border-2 border-gray-200 hover:border-gray-300 rounded-full font-semibold text-gray-700 hover:text-gray-900 transition-all duration-300 text-lg">
+                    <Link href='/all-products' className="group flex items-center justify-center gap-2 px-8 py-4 bg-white/80 backdrop-blur-sm hover:bg-white border-2 border-gray-200 hover:border-gray-300 rounded-full font-semibold text-gray-700 hover:text-gray-900 transition-all duration-300 text-lg">
                       {slide.buttonText2}
                       <Image 
                         className="group-hover:translate-x-1 transition-transform w-5 h-5" 
                         src={assets.arrow_icon} 
                         alt="arrow_icon" 
                       />
-                    </button>
+                    </Link>
                   </div>
                 </div>
               </div>

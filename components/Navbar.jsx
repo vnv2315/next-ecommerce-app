@@ -5,17 +5,13 @@ import Link from "next/link";
 import { useAppContext } from "@/context/AppContext";
 import Image from "next/image";
 import { useClerk, UserButton, useUser } from "@clerk/nextjs";
-import { Menu, X, Settings } from "lucide-react";
+import { Menu, X, Settings, ShoppingCart, Package } from "lucide-react";
 
 const Navbar = () => {
   const { openSignIn } = useClerk();
-  const { user: contextUser, isSignedIn: contextSignedIn } = useUser(); // Use Clerk's user state directly
+  const { user: contextUser, isSignedIn: contextSignedIn } = useUser();
   const { isSeller, router } = useAppContext();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-  // Debug: Log the user states
-  console.log("Context User:", contextUser);
-  console.log("Is Signed In:", contextSignedIn);
 
   const navLinks = [
     { href: "/", label: "Home" },
@@ -56,22 +52,6 @@ const Navbar = () => {
                   <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-600 to-blue-600 group-hover:w-full transition-all duration-300"></span>
                 </Link>
               ))}
-            </div>
-
-            {/* Desktop Right Side */}
-            <div className="hidden lg:flex items-center space-x-4">
-              
-              {/* Search Button */}
-              <button className="p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-full transition-all duration-200">
-                <Image
-                  src={assets.search_icon}
-                  alt="search icon"
-                  width={20}
-                  height={20}
-                  className="opacity-70 hover:opacity-100 transition-opacity"
-                />
-              </button>
-
               {/* Seller Dashboard Button */}
               {isSeller && (
                 <button
@@ -79,14 +59,42 @@ const Navbar = () => {
                   className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-purple-600 bg-purple-50 border border-purple-200 rounded-full hover:bg-purple-100 hover:border-purple-300 transition-all duration-200"
                 >
                   <Settings size={16} />
-                  Seller Dashboard
+                  Admin
                 </button>
               )}
+            </div>
+
+            {/* Desktop Right Side */}
+            <div className="hidden lg:flex items-center space-x-4">
+
+              
 
               {/* User Authentication */}
               {contextSignedIn ? (
                 <div className="flex items-center">
-                  <UserButton afterSignOutUrl="/" />
+                  <UserButton 
+                    afterSignOutUrl="/"
+                    appearance={{
+                      elements: {
+                        avatarBox: "w-8 h-8",
+                        userButtonPopoverCard: "shadow-lg border border-gray-200",
+                        userButtonPopoverActionButton: "hover:bg-gray-50"
+                      }
+                    }}
+                  >
+                    <UserButton.MenuItems>
+                      <UserButton.Action 
+                        label="My Cart" 
+                        labelIcon={<ShoppingCart size={16} />}
+                        onClick={() => router.push("/cart")}
+                      />
+                      <UserButton.Action 
+                        label="My Orders" 
+                        labelIcon={<Package size={16} />}
+                        onClick={() => router.push("/my-orders")}
+                      />
+                    </UserButton.MenuItems>
+                  </UserButton>
                 </div>
               ) : (
                 <button 
@@ -119,7 +127,29 @@ const Navbar = () => {
               
               {/* Mobile User Button */}
               {contextSignedIn ? (
-                <UserButton afterSignOutUrl="/" />
+                <UserButton 
+                  afterSignOutUrl="/"
+                  appearance={{
+                    elements: {
+                      avatarBox: "w-7 h-7",
+                      userButtonPopoverCard: "shadow-lg border border-gray-200",
+                      userButtonPopoverActionButton: "hover:bg-gray-50"
+                    }
+                  }}
+                >
+                  <UserButton.MenuItems>
+                    <UserButton.Action 
+                      label="My Cart" 
+                      labelIcon={<ShoppingCart size={16} />}
+                      onClick={() => router.push("/cart")}
+                    />
+                    <UserButton.Action 
+                      label="My Orders" 
+                      labelIcon={<Package size={16} />}
+                      onClick={() => router.push("/orders")}
+                    />
+                  </UserButton.MenuItems>
+                </UserButton>
               ) : (
                 <button 
                   onClick={openSignIn} 
@@ -164,17 +194,33 @@ const Navbar = () => {
               </Link>
             ))}
             
-            {/* Mobile Search */}
-            <button className="flex items-center gap-3 w-full px-4 py-3 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg font-medium transition-all duration-200">
-              <Image
-                src={assets.search_icon}
-                alt="search icon"
-                width={18}
-                height={18}
-                className="opacity-70"
-              />
-              Search
-            </button>
+  
+
+            {/* Mobile Cart & Orders Links (when signed in) */}
+            {contextSignedIn && (
+              <>
+                <button 
+                  onClick={() => {
+                    router.push("/cart");
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className="flex items-center gap-3 w-full px-4 py-3 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg font-medium transition-all duration-200"
+                >
+                  <ShoppingCart size={18} className="opacity-70" />
+                  My Cart
+                </button>
+                <button 
+                  onClick={() => {
+                    router.push("/orders");
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className="flex items-center gap-3 w-full px-4 py-3 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg font-medium transition-all duration-200"
+                >
+                  <Package size={18} className="opacity-70" />
+                  My Orders
+                </button>
+              </>
+            )}
           </div>
         </div>
       </nav>

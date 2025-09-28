@@ -31,15 +31,6 @@ const Banner = () => {
           </p>
         </div>
         
-        <button className="group relative flex items-center justify-center gap-2 px-8 py-3 bg-gradient-to-r from-orange-500 to-red-500 rounded-full text-white font-semibold text-lg shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300 overflow-hidden">
-          <span className="absolute inset-0 bg-gradient-to-r from-orange-600 to-red-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
-          <span className="relative z-10">Buy Now</span>
-          <Image 
-            className="relative z-10 group-hover:translate-x-1 transition-transform duration-300" 
-            src={assets.arrow_icon_white} 
-            alt="arrow_icon_white" 
-          />
-        </button>
       </div>
 
       {/* Right Gaming Controller - Desktop */}

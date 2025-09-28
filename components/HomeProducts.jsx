@@ -2,6 +2,7 @@ import React from "react";
 import ProductCard from "./ProductCard";
 import { useAppContext } from "@/context/AppContext";
 import { TrendingUp, Zap, ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 const HomeProducts = () => {
   const { products, router } = useAppContext();
@@ -87,13 +88,13 @@ const HomeProducts = () => {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <button 
-              onClick={() => { router.push('/all-products') }} 
+            <Link 
+              href='/all-products' 
               className="group flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-orange-500 to-red-500 text-white font-semibold rounded-full shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300"
             >
               <span>Explore All Products</span>
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </button>
+            </Link>
             
             <div className="flex items-center gap-2 text-sm text-gray-500">
               <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>

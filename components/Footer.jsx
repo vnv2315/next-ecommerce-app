@@ -42,24 +42,7 @@ const Footer = () => {
             <p className="text-gray-300 leading-relaxed max-w-md">
               Discover the latest in premium electronics, from immersive audio experiences to powerful gaming peripherals. We curate only the finest tech products to elevate your digital lifestyle.
             </p>
-
-            {/* Newsletter Signup */}
-            <div className="space-y-3">
-              <h3 className="text-xl font-semibold text-white">Stay Updated</h3>
-              <div className="flex flex-col sm:flex-row gap-3">
-                <div className="relative flex-1">
-                  <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-                  <input
-                    type="email"
-                    placeholder="Enter your email"
-                    className="w-full pl-11 pr-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-purple-400 focus:ring-2 focus:ring-purple-400/20 transition-all duration-300 text-white placeholder-gray-400"
-                  />
-                </div>
-                <button className="px-6 py-3 bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg font-semibold hover:from-purple-700 hover:to-blue-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
-                  Subscribe
-                </button>
-              </div>
-            </div>
+            
           </div>
 
           {/* Company Links */}
