@@ -2,6 +2,9 @@
 
 A modern, full-stack e-commerce website built with Next.js, featuring seamless user authentication, admin panel, and efficient background job processing.
 
+**Live Demo**: [click here](https://next-ecommerce-app-taupe.vercel.app/)
+
+
 ## 🚀 Features
 
 ### User Features
@@ -58,8 +61,8 @@ A modern, full-stack e-commerce website built with Next.js, featuring seamless u
 
 1. **Clone the repository**
    ```bash
-   git clone [your-github-repo-url]
-   cd vnv-ecommerce
+   git clone https://github.com/vnv2315/next-ecommerce-app.git
+   cd next-ecommerce-app
    ```
 
 2. **Install dependencies**
@@ -110,11 +113,6 @@ A modern, full-stack e-commerce website built with Next.js, featuring seamless u
 2. Configure authentication providers (Email, Google, etc.)
 3. Set up webhooks for user events
 4. Add environment variables to `.env.local`
-
-### Webhook Endpoints
-- User created: `/api/webhooks/clerk/user-created`
-- User updated: `/api/webhooks/clerk/user-updated`
-- User deleted: `/api/webhooks/clerk/user-deleted`
 
 ## 📦 Database Schema
 
@@ -197,22 +195,6 @@ const cloudinary = {
 };
 ```
 
-## 🚀 Deployment
-
-### Deploy to Vercel
-
-1. **Connect to Vercel**
-   ```bash
-   npm install -g vercel
-   vercel
-   ```
-
-2. **Set environment variables** in Vercel dashboard
-
-3. **Configure domains** and SSL certificates
-
-4. **Set up webhooks** for production environment
-
 ### Production Checklist
 - [ ] Environment variables configured
 - [ ] Database connection string updated
@@ -277,13 +259,5 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 For support, email support@vnv-ecommerce.com or join our Discord channel.
 
-## 🔗 Links
 
-- **Live Demo**: [https://vnv-ecommerce.vercel.app](https://vnv-ecommerce.vercel.app)
-- **Admin Panel**: [https://vnv-ecommerce.vercel.app/admin](https://vnv-ecommerce.vercel.app/admin)
-- **Documentation**: [Link to detailed docs]
-- **API Reference**: [Link to API docs]
-
----
-
-Made with ❤️ by [Your Name]
+Made with ❤️ by vnv

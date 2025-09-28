@@ -194,7 +194,17 @@ const Navbar = () => {
               </Link>
             ))}
             
-  
+            {/* Mobile Search */}
+            <button className="flex items-center gap-3 w-full px-4 py-3 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg font-medium transition-all duration-200">
+              <Image
+                src={assets.search_icon}
+                alt="search icon"
+                width={18}
+                height={18}
+                className="opacity-70"
+              />
+              Search
+            </button>
 
             {/* Mobile Cart & Orders Links (when signed in) */}
             {contextSignedIn && (
